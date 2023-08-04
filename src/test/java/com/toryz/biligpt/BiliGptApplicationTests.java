@@ -1,5 +1,6 @@
 package com.toryz.biligpt;
 
+import com.theokanning.openai.service.OpenAiService;
 import com.toryz.biligpt.service.impl.SummaryServiceImpl;
 import com.toryz.biligpt.util.BiliSdkUtil;
 import org.junit.jupiter.api.Test;
@@ -39,7 +40,13 @@ class BiliGptApplicationTests {
 
     @Test
     void testParseSubtitle() {
-        biliSdkUtil.parseSubtitle("//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/359085168121618675019e8292075781017582af6dc483231e6?auth_key=1690812170-93ea77f900b64f2c806b076344122969-0-6243f351e7e99bab1699f5c5f425d4f6");
+        //biliSdkUtil.parseSubtitle("//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/40197385111525515512ed6627aab493fa3c02fbbd3c9657627?auth_key=1690887920-07441b0fa2d04fd0b06ddfbf7cdf21cf-0-95c47ff78af56528a5121da9374ff987\n");
 
+    }
+
+    @Test
+    void testOpenAi(){
+        //OpenAiService service = new OpenAiService("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");
+        //System.out.println(service.listModels());
     }
 }

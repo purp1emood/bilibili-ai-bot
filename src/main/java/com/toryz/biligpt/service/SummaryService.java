@@ -10,4 +10,6 @@ import org.springframework.stereotype.Service;
 
 public interface SummaryService {
     GetGptSummaryResponse getGptSummary(String bvid);
+
+    String getGptModel();
 }

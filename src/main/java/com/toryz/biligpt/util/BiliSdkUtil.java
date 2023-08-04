@@ -3,6 +3,7 @@ package com.toryz.biligpt.util;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -20,6 +21,7 @@ import java.util.List;
  * @Date: 2023/7/30 21:30
  */
 @Component
+@Slf4j
 public class BiliSdkUtil {
 
     public static String getCid(String bv) {
@@ -122,9 +124,6 @@ public class BiliSdkUtil {
                 }
             }
             contentList.add(concatenatedText.toString());
-            for (String content : contentList) {
-                System.out.println(content);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

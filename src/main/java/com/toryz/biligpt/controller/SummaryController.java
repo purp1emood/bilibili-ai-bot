@@ -2,7 +2,9 @@ package com.toryz.biligpt.controller;
 
 import com.toryz.biligpt.entity.response.GetGptSummaryResponse;
 import com.toryz.biligpt.service.impl.SummaryServiceImpl;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +22,13 @@ public class SummaryController {
     }
 
     @GetMapping("/gpt/{bvid}")
-    public GetGptSummaryResponse getGptSummary(String bvid) {
+    public GetGptSummaryResponse getGptSummary(@PathVariable String bvid) {
 
-        return getGptSummary(bvid);
+        return summaryService.getGptSummary(bvid);
+    }
+
+    @GetMapping("/gpt/model")
+    public String getGptModel() {
+        return summaryService.getGptModel();
     }
 }

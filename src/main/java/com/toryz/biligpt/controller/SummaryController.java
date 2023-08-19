@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 2023/7/30 20:08
  */
 @RestController
-@RequestMapping("/summary")
+@RequestMapping("/gpt")
 public class SummaryController {
     final SummaryServiceImpl summaryService;
 
@@ -21,14 +21,19 @@ public class SummaryController {
         this.summaryService = summaryService;
     }
 
-    @GetMapping("/gpt/{bvid}")
-    public GetGptSummaryResponse getGptSummary(@PathVariable String bvid) {
+    @GetMapping("/{bvid}")
+    public String getGptSummary(@PathVariable String bvid) {
 
         return summaryService.getGptSummary(bvid);
     }
 
-    @GetMapping("/gpt/model")
+    @GetMapping("/model")
     public String getGptModel() {
         return summaryService.getGptModel();
+    }
+
+    @GetMapping("/summary")
+    public String getGptSummary() {
+        return summaryService.getGptSummary();
     }
 }

@@ -3,12 +3,8 @@ import time
 import json
 import pymysql
 import re
-# 本脚本示例是"枝网查重"机器人,效果请看github页面,你也可以在本脚本的基础上大量删改做出一个新脚本,欢迎加一些分叉
-# 由于经历了一个大版本迭代,删除了无用的代码,但仍有残留,删改时请谨慎
-# 某些地方的代码可能过于臃肿,但是能跑起来就行了:) 作者本人没有太多的时间去改代码,欢迎大家来pull,有问题可以提个issues
-# 脚本的变量名以及排版非常混乱,如果再过几个月我可能都会不知道什么意思,所以大家最好改一下变量名和排版方便阅读
-# 用到的php接口和mysql示例文件会放到github上
-# 改好之后我直接上传到了github,没有经过任何测试,出现问题请联系我
+import threading
+
 
 def getmsgs():
     # 设置cookie,填自己账号的
@@ -134,4 +130,6 @@ def getaddmsg(retype, oid, root, cflendd, csrf, cookie, at_name):
 
 
 if __name__ == '__main__':
-    getmsgs()
+    thread = threading.Thread(target=getmsgs)
+    thread.daemon = True  # 设置线程为守护线程
+    thread.start()

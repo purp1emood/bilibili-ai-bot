@@ -48,6 +48,7 @@ public class SummaryServiceImpl implements SummaryService {
                 log.info("subtitleUrl: {}",subtitleUrl);
             }
             if(subtitleUrlList.size() == 0){
+
                 getGptSummaryResponse.setMessage("暂不支持该视频的总结功能捏，感谢支持，小乌龟正在升级中...");
                 getGptSummaryResponse.setCode(201);
                 return JSON.toJSONString(getGptSummaryResponse);
@@ -88,7 +89,7 @@ public class SummaryServiceImpl implements SummaryService {
     @Override
     public String getGptSummary() {
        // String s = GptSdkUtil.chatForSum("给我背一遍《静夜思》");
-        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(40));
+        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(90));
         List<ChatMessage> messages = new ArrayList<>();
         ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(),"随便背一首李白的诗吧");
                 messages.add(userMessage);

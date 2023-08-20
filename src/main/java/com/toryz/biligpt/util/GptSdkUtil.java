@@ -27,7 +27,7 @@ public class GptSdkUtil {
     String token;
 
     public String chatForSum(StringBuilder txt){
-        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(40));
+        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(90));
         List<ChatMessage> messages = new ArrayList<>();
 
         List<String> splitContent = splitContent(txt);

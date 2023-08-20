@@ -43,6 +43,7 @@ public class SummaryController {
         return summaryService.getGptModel();
     }
 
+
     @GetMapping("/summary")
     public String getGptSummary() {
         return summaryService.getGptSummary();

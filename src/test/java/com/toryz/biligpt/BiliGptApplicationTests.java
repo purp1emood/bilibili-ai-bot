@@ -16,28 +16,28 @@ class BiliGptApplicationTests {
     @Autowired
     BiliSdkUtil biliSdkUtil;
 
-    @Test
-    void contextLoads() {
-        summaryService.getGptSummary("BV1QK4y1C7ZB");
-    }
-
-    @Test
-    void testGetCid() {
-        List<String> partList = biliSdkUtil.getPartCidList("BV12h4y1L7gX");
-        for (String s : partList) {
-            System.out.println(s);
-        }
-    }
-
-    @Test
-    void testGetSubtitle() {
-        List<String> subtitle = biliSdkUtil.getSubtitleUrlList("BV12h4y1L7gX", "1152551551");
-        for (String s : subtitle) {
-            System.out.println(s);
-            System.out.println("-----");
-        }
-        System.out.println("-----");
-    }
+//    @Test
+//    void contextLoads() {
+//        summaryService.getGptSummary("BV1QK4y1C7ZB");
+//    }
+//
+//    @Test
+//    void testGetCid() {
+//        List<String> partList = biliSdkUtil.getPartCidList("BV1oX4y1x7Ho");
+//        for (String s : partList) {
+//            System.out.println(s);
+//        }
+//    }
+//
+//    @Test
+//    void testGetSubtitle() {
+//        List<String> subtitle = biliSdkUtil.getSubtitleUrlList("BV1oX4y1x7Ho", "1239238098");
+//        for (String s : subtitle) {
+//            System.out.println(s);
+//            System.out.println("-----");
+//        }
+//        System.out.println("-----");
+//    }
 //
 //    @Test
 //    void testParseSubtitle() {

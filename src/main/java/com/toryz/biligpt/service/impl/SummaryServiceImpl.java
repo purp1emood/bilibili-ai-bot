@@ -34,7 +34,8 @@ public class SummaryServiceImpl implements SummaryService {
         for(String s : cidList){
             log.info("cidList: {}",s);
         }
-        List<String> summaryList = null;
+
+        StringBuilder AllContent = new StringBuilder();
 
         for(String cid: cidList){
             List<String> subtitleUrlList = BiliSdkUtil.getSubtitleUrlList(bvid, cid);
@@ -47,11 +48,14 @@ public class SummaryServiceImpl implements SummaryService {
                     log.info("content: {}",content);
                 }
                 for(String content: contentList){
-                    summaryList.add(gptSdkUtil.chatForSum(content));
+                    AllContent.append(content);
                 }
             }
         }
-        return summaryList.get(0);
+
+        String s = gptSdkUtil.chatForSum(AllContent);
+
+        return s;
     }
 
     @Override
@@ -67,12 +71,12 @@ public class SummaryServiceImpl implements SummaryService {
        // String s = GptSdkUtil.chatForSum("给我背一遍《静夜思》");
         OpenAiService service = new OpenAiService(token);
         List<ChatMessage> messages = new ArrayList<>();
-        ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(),"给我背一遍《静夜思》");
-        messages.add(userMessage);
+        ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(),"随便背一首李白的诗吧");
+                messages.add(userMessage);
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest.builder()
                 .messages(messages)
-                .maxTokens(3500)
-                .model("gpt-3.5-turbo")
+                .maxTokens(500)
+                .model("gpt-3.5-turbo-16k-0613")
                 .build();
 
         //CompletionResult completion = service.createCompletion(completionRequest);

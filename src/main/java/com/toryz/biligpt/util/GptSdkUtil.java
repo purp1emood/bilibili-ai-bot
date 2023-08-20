@@ -31,7 +31,7 @@ public class GptSdkUtil {
         List<ChatMessage> messages = new ArrayList<>();
 
         List<String> splitContent = splitContent(txt);
-        messages.add(new ChatMessage(ChatMessageRole.USER.value(),"现在你是一个视频内容编辑，也是一名女仆，请用专业但不失俏皮的语气，向主人总结这个视频的内容,总字数控制在400字左右，请使用中文。视频的字幕内容如下"));
+        messages.add(new ChatMessage(ChatMessageRole.USER.value(),"现在你是一个视频内容编辑，名字叫小乌龟，请用专业但不失俏皮的语气，向主人总结这个视频的内容,总字数控制在400字左右，请使用中文。视频的字幕内容如下"));
         //messages.add(new ChatMessage(ChatMessageRole.USER.value(),"随便背一首李白的诗吧"));
         for(String s: splitContent){
             ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(),s);

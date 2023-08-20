@@ -1,13 +1,9 @@
 package com.toryz.biligpt.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.theokanning.openai.completion.CompletionChoice;
-import com.theokanning.openai.completion.CompletionRequest;
-import com.theokanning.openai.completion.CompletionResult;
-import com.theokanning.openai.completion.chat.*;
+import com.theokanning.openai.completion.chat.ChatCompletionRequest;
+import com.theokanning.openai.completion.chat.ChatMessage;
+import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.service.OpenAiService;
-import com.toryz.biligpt.entity.response.GetGptSummaryResponse;
 import com.toryz.biligpt.service.SummaryService;
 import com.toryz.biligpt.util.BiliSdkUtil;
 import com.toryz.biligpt.util.GptSdkUtil;
@@ -16,10 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 

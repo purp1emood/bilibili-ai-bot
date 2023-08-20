@@ -47,6 +47,11 @@ public class SummaryServiceImpl implements SummaryService {
             for(String subtitleUrl: subtitleUrlList){
                 log.info("subtitleUrl: {}",subtitleUrl);
             }
+            if(subtitleUrlList.size() == 0){
+                getGptSummaryResponse.setMessage("暂不支持该视频的总结功能捏，感谢支持，小乌龟正在升级中...");
+                getGptSummaryResponse.setCode(201);
+                return JSON.toJSONString(getGptSummaryResponse);
+            }
             for(String subtitleUrl: subtitleUrlList){
                 List<String> contentList = BiliSdkUtil.parseSubtitle(subtitleUrl);
                 for(String content: contentList){

@@ -1,9 +1,11 @@
 package com.toryz.biligpt.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.service.OpenAiService;
+import com.toryz.biligpt.entity.response.GetGptSummaryResponse;
 import com.toryz.biligpt.service.SummaryService;
 import com.toryz.biligpt.util.BiliSdkUtil;
 import com.toryz.biligpt.util.GptSdkUtil;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +33,8 @@ public class SummaryServiceImpl implements SummaryService {
 
     @Override
     public String getGptSummary(String bvid) {
+        GetGptSummaryResponse getGptSummaryResponse = new GetGptSummaryResponse();
+
         List<String> cidList = BiliSdkUtil.getPartCidList(bvid);
         for(String s : cidList){
             log.info("cidList: {}",s);
@@ -52,10 +57,19 @@ public class SummaryServiceImpl implements SummaryService {
                 }
             }
         }
+        String s = null;
+        try{
+            s = gptSdkUtil.chatForSum(AllContent);
+        }catch (Exception e){
+            getGptSummaryResponse.setMessage("gpt连接超时...");
+            getGptSummaryResponse.setCode(400);
+        }
 
-        String s = gptSdkUtil.chatForSum(AllContent);
-
-        return s;
+        if(s != null){
+            getGptSummaryResponse.setMessage(s);
+            getGptSummaryResponse.setCode(200);
+        }
+        return JSON.toJSONString(getGptSummaryResponse);
     }
 
     @Override
@@ -69,7 +83,7 @@ public class SummaryServiceImpl implements SummaryService {
     @Override
     public String getGptSummary() {
        // String s = GptSdkUtil.chatForSum("给我背一遍《静夜思》");
-        OpenAiService service = new OpenAiService(token);
+        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(40));
         List<ChatMessage> messages = new ArrayList<>();
         ChatMessage userMessage = new ChatMessage(ChatMessageRole.USER.value(),"随便背一首李白的诗吧");
                 messages.add(userMessage);
@@ -81,6 +95,9 @@ public class SummaryServiceImpl implements SummaryService {
 
         //CompletionResult completion = service.createCompletion(completionRequest);
         ChatMessage responseMessage = service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage();
-        return responseMessage.getContent();
+        GetGptSummaryResponse getGptSummaryResponse = new GetGptSummaryResponse();
+        getGptSummaryResponse.setMessage(responseMessage.getContent());
+        getGptSummaryResponse.setCode(200);
+        return JSON.toJSONString(getGptSummaryResponse);
     }
 }

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class GptSdkUtil {
     String token;
 
     public String chatForSum(StringBuilder txt){
-        OpenAiService service = new OpenAiService(token);
+        OpenAiService service = new OpenAiService(token, Duration.ofSeconds(40));
         List<ChatMessage> messages = new ArrayList<>();
 
         List<String> splitContent = splitContent(txt);
@@ -42,7 +43,7 @@ public class GptSdkUtil {
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest.builder()
                 .messages(messages)
                 .maxTokens(5000)
-                .model("gpt-4-32k-0613")
+                .model("gpt-3.5-turbo-16k-0613")
                 .build();
 
         //CompletionResult completion = service.createCompletion(completionRequest);

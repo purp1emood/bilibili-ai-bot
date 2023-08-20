@@ -8,4 +8,6 @@ import lombok.Data;
  */
 @Data
 public class GetGptSummaryResponse {
+    int code;
+    String message;
 }

@@ -33,6 +33,7 @@ public class SummaryServiceImpl implements SummaryService {
 
     @Override
     public String getGptSummary(String bvid) {
+        log.info("bvid: {}",bvid);
         GetGptSummaryResponse getGptSummaryResponse = new GetGptSummaryResponse();
 
         List<String> cidList = BiliSdkUtil.getPartCidList(bvid);
@@ -67,6 +68,7 @@ public class SummaryServiceImpl implements SummaryService {
         try{
             s = gptSdkUtil.chatForSum(AllContent);
         }catch (Exception e){
+            log.info("gpt连接超时...");
             getGptSummaryResponse.setMessage("gpt连接超时...");
             getGptSummaryResponse.setCode(400);
         }

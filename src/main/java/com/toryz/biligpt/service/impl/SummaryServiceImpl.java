@@ -108,4 +108,17 @@ public class SummaryServiceImpl implements SummaryService {
         getGptSummaryResponse.setCode(200);
         return JSON.toJSONString(getGptSummaryResponse);
     }
+
+
+    /* 初始化布隆过滤器
+    @PostConstruct
+    public void initBloomFilter(){
+        // 把所有的 BVid 放进布隆过滤器中
+        List<String> ids = getAllBVIds();
+        ids.parallelStream().forEach(item->{
+            // 添加BV号
+            bloomFilter.add(ConvertCacheKeyUtil.getFormatString(CacheKeyConstant.CACHE_KEY_REVERSE_BY_BV_ID,item));
+        });
+        log.info("***********布隆过滤器初始化数据成功  当前BV数量：{} ***********",bloomFilter.count());
+    }*/
 }

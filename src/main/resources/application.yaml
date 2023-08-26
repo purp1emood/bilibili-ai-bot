@@ -1,2 +1,20 @@
 openAI:
   token: "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"
+
+spring:
+  datasource:
+    driver-class-name: ${MYSQL_DRIVER:com.mysql.jdbc.Driver}
+    jdbc-url: ${MYSQL_URL:jdbc:mysql://127.0.0.1:3306/msg?rewriteBatchedStatements=true}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root123}
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s

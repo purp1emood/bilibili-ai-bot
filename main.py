@@ -7,7 +7,7 @@ import re
 def getmsgs():
     # 设置cookie,填自己账号的
     cookie = {
-        "Cookie": "SESSDATA=12fd5a2e%2C1709523493%2Ccd431%2A927pvQlLOyva9ohEZWuB9PcpE1Cb7cfOa9tKwOor2UZ1VD8z26QYchdKqkqYmlFvRD3yK18AAAQwA; bili_jct=d663d246c600b19f21669097b5ee5936;"}
+        "Cookie": "xxx"}
     while True:
         # 每三秒爬取一次
 
